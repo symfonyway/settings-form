@@ -1,18 +1,17 @@
-// @ts-nocheck 
 import { Col, Row, Form } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
+import { INsGroupItem } from '../../types/nsGroupItem';
 
-const NSFormGroupItem = ({ label, id, pattern, enabled }) => {
+const NSFormGroupItem:React.FC<INsGroupItem> = ({ label, id, pattern, enabled }) => {
     const [text, changeText] = useState('');
     const [isValid, changeValidity] = useState(true);
-    const regex = new RegExp(pattern);
-
-    const onHandleChange = (value) => {
-        changeText(value);
-        regex.test(value) ? changeValidity(true) : changeValidity(false);
-    };
-
     const [isEnable, changeFormState] = useState(enabled);
+
+    const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        RegExp(pattern).test(value) ? changeValidity(true) : changeValidity(false);
+        changeText(value);
+    };
 
     useEffect(() => {
         typeof enabled !== 'undefined' ? changeFormState(enabled) : changeFormState(true);
@@ -31,7 +30,7 @@ const NSFormGroupItem = ({ label, id, pattern, enabled }) => {
                 <Form.Label className={pattern ? 'ns-form__required' : ''} id={id} >{label}</Form.Label>
             </Col>
             <Col className='text-start'>
-                <Form.Control disabled={!isEnable} type="text" value={text} onInput={({target}) => onHandleChange(target.value)} />
+                <Form.Control disabled={!isEnable} type="text" value={text} onInput={onHandleChange} />
                 {
                     !isValid && 
                     <Form.Text className={pattern ? 'text-danger' : ''}>

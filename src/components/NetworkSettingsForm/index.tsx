@@ -1,4 +1,3 @@
-// @ts-nocheck 
 import { Container, Button, Col, Row, Form } from 'react-bootstrap';
 import {
   AUTO_IP_ITEM,
@@ -11,18 +10,28 @@ import {
   FOLLOW_WIRELESS_DNS_ITEM,
 } from './items.constants'
 import { NSFormGroup } from './NSFormGroup';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const NetworkSettings = () => {
   const [isWifiEnabled, changeWifiCheckbox] = useState(false);
   const [isSecurityEnabled, changeSecurityCheckbox] = useState(false);
+  const [networkName, setNetworkName] = useState('');
+  const [securityKey, setSecurityKey] = useState('');
 
-  const onHandleWifiCheckbox = (value) => {
-    changeWifiCheckbox(value);
+  const onHandleWifiCheckbox:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    changeWifiCheckbox(event.target.checked);
   };
 
-  const onHandleSecurityCheckbox = (value) => {
-    changeSecurityCheckbox(value);
+  const onHandleSecurityCheckbox:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    changeSecurityCheckbox(event.target.checked);
+  };
+
+  const onInputSecurityKey:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSecurityKey(event.target.value);
+  };
+
+  const onInputNetworkName:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setNetworkName(event.target.checked);
   };
 
   return (
@@ -46,12 +55,12 @@ const NetworkSettings = () => {
               id="wlessEnableWifi"
               label="Enable wifi"
               checked={isWifiEnabled}
-              onChange={({target}) => onHandleWifiCheckbox(target.checked)}
+              onChange={onHandleWifiCheckbox}
             />
 
             <Row className={isWifiEnabled ? '' : 'disabled'}>
               <Col className='ns-form__required text-end'><Form.Label>Wireless Network Name:</Form.Label></Col>
-              <Col><Form.Control type="text" placeholder='Please select' disabled={!isWifiEnabled}/></Col>
+              <Col><Form.Control type="text" value={networkName} onChange={onInputNetworkName} placeholder='Please select' disabled={!isWifiEnabled}/></Col>
             </Row>
 
             <Form.Check 
@@ -59,13 +68,13 @@ const NetworkSettings = () => {
               id="wlessEnableSecurity"
               label="Enable Wireless Security"
               checked={isSecurityEnabled}
-              onChange={({target}) => onHandleSecurityCheckbox(target.checked)}
+              onChange={onHandleSecurityCheckbox}
               disabled={!isWifiEnabled}
             />
 
             <Row className={isSecurityEnabled && isWifiEnabled ? '' : 'disabled'}>
               <Col className="text-end"><Form.Label>Security Key:</Form.Label></Col>
-              <Col><Form.Control type="text" disabled={!isWifiEnabled || !isSecurityEnabled}/></Col>
+              <Col><Form.Control type="text" value={securityKey} onChange={onInputSecurityKey} disabled={!isWifiEnabled || !isSecurityEnabled}/></Col>
             </Row>
 
             <NSFormGroup {...AUTO_WIRELESS_IP_ITEM} disabled={isWifiEnabled}/>
