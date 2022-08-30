@@ -11,8 +11,20 @@ import {
   FOLLOW_WIRELESS_DNS_ITEM,
 } from './items.constants'
 import { NSFormGroup } from './NSFormGroup';
+import React, { useState, useEffect } from 'react';
 
 const NetworkSettings = () => {
+  const [isWifiEnabled, changeWifiCheckbox] = useState(false);
+  const [isSecurityEnabled, changeSecurityCheckbox] = useState(false);
+
+  const onHandleWifiCheckbox = (value) => {
+    changeWifiCheckbox(value);
+  };
+
+  const onHandleSecurityCheckbox = (value) => {
+    changeSecurityCheckbox(value);
+  };
+
   return (
     <Container>
       <Form>
@@ -33,28 +45,33 @@ const NetworkSettings = () => {
               type="checkbox"
               id="wlessEnableWifi"
               label="Enable wifi"
+              checked={isWifiEnabled}
+              onChange={({target}) => onHandleWifiCheckbox(target.checked)}
             />
 
-            <Row>
-              <Col className='text-end'><Form.Label>Wireless Network Name:</Form.Label></Col>
-              <Col><Form.Control type="text"/></Col>
+            <Row className={isWifiEnabled ? '' : 'disabled'}>
+              <Col className='ns-form__required text-end'><Form.Label>Wireless Network Name:</Form.Label></Col>
+              <Col><Form.Control type="text" placeholder='Please select' disabled={!isWifiEnabled}/></Col>
             </Row>
 
             <Form.Check 
               type="checkbox"
               id="wlessEnableSecurity"
               label="Enable Wireless Security"
+              checked={isSecurityEnabled}
+              onChange={({target}) => onHandleSecurityCheckbox(target.checked)}
+              disabled={!isWifiEnabled}
             />
 
-            <Row>
+            <Row className={isSecurityEnabled && isWifiEnabled ? '' : 'disabled'}>
               <Col className="text-end"><Form.Label>Security Key:</Form.Label></Col>
-              <Col><Form.Control type="text"/></Col>
+              <Col><Form.Control type="text" disabled={!isWifiEnabled || !isSecurityEnabled}/></Col>
             </Row>
 
-            <NSFormGroup {...AUTO_WIRELESS_IP_ITEM}/>
-            <NSFormGroup {...FOLLOW_WIRELESS_IP_ITEM}/>
-            <NSFormGroup {...AUTO_WIRELESS_DNS_ITEM}/>
-            <NSFormGroup {...FOLLOW_WIRELESS_DNS_ITEM}/>
+            <NSFormGroup {...AUTO_WIRELESS_IP_ITEM} disabled={isWifiEnabled}/>
+            <NSFormGroup {...FOLLOW_WIRELESS_IP_ITEM} disabled={isWifiEnabled}/>
+            <NSFormGroup {...AUTO_WIRELESS_DNS_ITEM} disabled={isWifiEnabled}/>
+            <NSFormGroup {...FOLLOW_WIRELESS_DNS_ITEM} disabled={isWifiEnabled}/>
           </Col>
         </Row>
         <Row xs="auto" className="border p-2">

@@ -1,0 +1,9 @@
+.ns-form__required::after {
+    content: ' *';
+    color: red;
+}
+
+.disabled {
+    cursor: default;
+    opacity: .5;
+}

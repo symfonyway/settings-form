@@ -1,8 +1,20 @@
 // @ts-nocheck 
 import { Form } from "react-bootstrap"
 import { NSFormGroupItem } from './NSFormGroupItem';
+import React, { useState, useEffect } from 'react';
 
-const NSFormGroup = ({variantId, variantName, variantLabel, variantFields, controlId, checked}) => {
+const NSFormGroup = ({variantId, variantName, variantLabel, variantFields, controlId, isChecked, disabled}) => {
+
+    const [checkboxState, changeState] = useState(isChecked);
+    const [isDisabled, changeFormState] = useState(disabled);
+
+    const onHandleChange = (value) => {
+        changeState(value);
+    };
+
+    useEffect(() => {
+        changeFormState(disabled);
+    }, [disabled]);
 
     if (variantFields) {
         return (
@@ -12,9 +24,12 @@ const NSFormGroup = ({variantId, variantName, variantLabel, variantFields, contr
                     id={variantId}
                     name={variantName}
                     label={variantLabel}
+                    checked={checkboxState}
+                    disabled={!isDisabled}
+                    onChange={({target}) => onHandleChange(target.checked)}
                 />
                 <div className='text-end'>
-                    { variantFields.map((field, ind) => <NSFormGroupItem key={controlId + ind} {...field} />) }
+                    { variantFields.map((field, ind) => <NSFormGroupItem key={controlId + ind} {...field} enabled={isDisabled} />) }
                 </div>
             </Form.Group>
         );
@@ -26,7 +41,9 @@ const NSFormGroup = ({variantId, variantName, variantLabel, variantFields, contr
             id={variantId}
             name={variantName}
             label={variantLabel}
-            checked={checked}
+            checked={checkboxState}
+            disabled={!isDisabled}
+            onChange={({target}) => onHandleChange(target.value)}
         />
     );
 };
