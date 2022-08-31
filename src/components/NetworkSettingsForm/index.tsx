@@ -31,7 +31,7 @@ const NetworkSettings = () => {
   };
 
   const onInputNetworkName:React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setNetworkName(event.target.checked);
+    setNetworkName(event.target.value);
   };
 
   return (

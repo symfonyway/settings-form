@@ -9,7 +9,7 @@ const NSFormGroupItem:React.FC<INsGroupItem> = ({ label, id, pattern, enabled })
 
     const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        RegExp(pattern).test(value) ? changeValidity(true) : changeValidity(false);
+        pattern && RegExp(pattern).test(value) ? changeValidity(true) : changeValidity(false);
         changeText(value);
     };
 
