@@ -16,7 +16,7 @@ const NSFormGroup:React.FC<INsGroup> = ({variantId, variantName, variantLabel, v
         changeFormState(disabled); 
     }, [disabled]);
 
-    if (variantFields) {
+    if (variantFields && controlId) {
         return (
             <Form.Group controlId={controlId} className="mt-1">
                 <Form.Check
