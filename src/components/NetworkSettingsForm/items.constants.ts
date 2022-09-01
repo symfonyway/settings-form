@@ -20,7 +20,8 @@ const FOLLOW_IP_ITEM:INsGroup = {
         { label: 'Subnet mask:', id: 'fipSubnet', pattern: DNS_PATTERN }, 
         { label: 'Default Gateway:', id: 'fipGateway' }
     ],
-    controlId: 'formBasicDNS'
+    controlId: 'formBasicDNS',
+    isChecked: false
 };
 
 const AUTO_DNS_ITEM:INsGroup = {
@@ -38,7 +39,8 @@ const FOLLOW_DNS_ITEM:INsGroup = {
         { label: 'Preferred DNS server:', id: 'fdPrefDnsServer', pattern: SUBNET_MAK_PATTERN }, 
         { label: 'Alternative DNS server:', id: 'fbAltDnsServer' }
     ],
-    controlId: 'formBasicDNS'
+    controlId: 'formBasicDNS',
+    isChecked: false
 };
 
 const AUTO_WIRELESS_IP_ITEM:INsGroup = {
@@ -57,7 +59,8 @@ const FOLLOW_WIRELESS_IP_ITEM:INsGroup = {
         { label: 'Subnet mask:', id: 'wfipSubnet', pattern: DNS_PATTERN }, 
         { label: 'Default Gateway:', id: 'wfipGateway' }
     ],
-    controlId: 'formBasicDNS'
+    controlId: 'formBasicDNS',
+    isChecked: false
 };
 
 const AUTO_WIRELESS_DNS_ITEM:INsGroup = {
@@ -75,7 +78,8 @@ const FOLLOW_WIRELESS_DNS_ITEM:INsGroup = {
         { label: 'Preferred DNS server:', id: 'wfdPrefDns', pattern: SUBNET_MAK_PATTERN },
         { label: 'Alternative DNS server:', id: 'wfdAltDns' }
     ],
-    controlId: 'formBasicDNS'
+    controlId: 'formBasicDNS',
+    isChecked: false
 };
 
 export { 
