@@ -1,42 +1,38 @@
 import { Col, Row, Form } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { INsGroupItem } from '../../types/nsGroupItem';
-import { useActions } from '../../hooks/useActions';
+import { useAction } from '../../hooks/useActions';
 
 const NSFormGroupItem:React.FC<INsGroupItem> = (props) => {
-    const { label, id, pattern } = props;
-    const [text, changeText] = useState('');
-    const [isValid, changeValidity] = useState(true);
+    const { label, id, pattern, action, enabled } = props;
+    const [value, setValue] = useState('');
+    const [isValid, changeValidState] = useState(true);
+    const actionGeneration = useAction();
 
-    const actionCreator = useActions();
-
-    const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-        if (pattern && RegExp(pattern).test(value)) {
-            changeValidity(true);
-        } else {
-            changeValidity(false);
-        }
-        changeText(value);
+    const onChangeValue:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { value } = e.target;
+        setValue(value);
+        actionGeneration(action, value);
+        changeValidState(!!pattern && RegExp(pattern).test(value));
     };
 
     useEffect(() => {
-        if (!isValid) {
-            changeValidity(true);
-            changeText('');
+        if (!enabled) {
+            setValue('');
+            actionGeneration(action, '');
         }
-    }, [isValid]);
+    }, [enabled]);
 
     return (
-        <Row className={'my-1' + (true ? '' : ' disabled')}>
+        <Row className={'my-1' + (enabled ? '' : ' disabled')}>
             <Col>
                 <Form.Label className={pattern ? 'ns-form__required' : ''} id={id} >{label}</Form.Label>
             </Col>
             <Col className='text-start'>
-                <Form.Control disabled={false} type="text" value={text} onInput={onHandleChange} />
+                <Form.Control disabled={!enabled} type="text" value={value} onChange={onChangeValue}/>
                 {
                     !isValid && 
-                    <Form.Text className={pattern ? 'text-danger' : ''}>
+                    <Form.Text className='text-danger'>
                         This field is invalid.
                     </Form.Text>
                 }

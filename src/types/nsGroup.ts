@@ -5,6 +5,8 @@ export interface INsGroup {
     variantName: string,
     variantLabel: string,
     variantFields?: INsGroupItem[],
+    isEnabled?: boolean,
     controlId?: string,
-    enabled?: boolean
+    isChecked?: boolean
+    event?: any
 }
