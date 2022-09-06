@@ -1,45 +1,43 @@
+import React, { useState, useEffect } from 'react';
 import { Col, Row, Form } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
-import { INsGroupItem } from '../../types/nsGroupItem';
 import { useAction } from '../../hooks/useActions';
 
-const NSFormGroupItem:React.FC<INsGroupItem> = (props) => {
-    const { label, id, pattern, action, enabled } = props;
+const InputGroup = ({ label, pattern, action, disabled }: any) => {
+    const [isValid, setValidState] = useState(true);
     const [value, setValue] = useState('');
-    const [isValid, changeValidState] = useState(true);
     const actionGeneration = useAction();
 
     const onChangeValue:React.ChangeEventHandler<HTMLInputElement> = (e) => {
         const { value } = e.target;
         setValue(value);
         actionGeneration(action, value);
-        changeValidState(!!pattern && RegExp(pattern).test(value));
+        setValidState(!!pattern && RegExp(pattern).test(value));
     };
 
     useEffect(() => {
-        if (!enabled) {
+        if (disabled) {
             setValue('');
+            setValidState(true);
             actionGeneration(action, '');
         }
-    }, [enabled]);
+    }, [disabled]);
 
     return (
-        <Row className={'my-1' + (enabled ? '' : ' disabled')}>
+        <Row className={'my-1' + (disabled ? ' disabled' : '')}>
             <Col>
-                <Form.Label className={pattern ? 'ns-form__required' : ''} id={id} >{label}</Form.Label>
+                <Form.Label className={pattern ? 'ns-form__required' : ''}>{label}</Form.Label>
             </Col>
             <Col className='text-start'>
-                <Form.Control disabled={!enabled} type="text" value={value} onChange={onChangeValue}/>
+                <Form.Control disabled={disabled} type="text" value={value} onChange={onChangeValue}/>
                 {
-                    !isValid && 
+                    pattern && !isValid && 
                     <Form.Text className='text-danger'>
                         This field is invalid.
                     </Form.Text>
                 }
-                
             </Col>
         </Row>
     );
 };
 
-export { NSFormGroupItem };
+export { InputGroup };
