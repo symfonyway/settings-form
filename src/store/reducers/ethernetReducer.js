@@ -12,6 +12,8 @@ const ethernetStore = {
     DefaultGateWay: '',
     PreferredDns: '',
     AlternativeDns: '',
+    networkName: '',
+    securityKey: '',
 }
 
 export const ethernetReducer = (state = ethernetStore, action) => {
@@ -23,9 +25,9 @@ export const ethernetReducer = (state = ethernetStore, action) => {
         case CHANGE_ETHERNET_DEFAULT_GATE_WAY:
             return {...state, DefaultGateWay: action.payload}
         case CHANGE_ETHERNET_PREFERRED_DNS:
-            return {...state, PreferredDns: action.payload}
+            return {...state, networkName: action.payload}
         case CHANGE_ETHERNET_ALTERNATIVE_DNS:
-            return {...state, AlternativeDns: action.payload}
+            return {...state, securityKey: action.payload}
         default:
             return state
     }

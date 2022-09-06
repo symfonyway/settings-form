@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row, Form } from 'react-bootstrap';
-import { useAction } from '../../hooks/useActions';
+import { useAction } from '../hooks/useActions';
+import { INsControl } from '../types/INsControl';
 
-const InputGroup = ({ label, pattern, action, disabled }: any) => {
+const InputGroup:React.FC<INsControl>  = ({ label, pattern, action, disabled }: any) => {
     const [isValid, setValidState] = useState(true);
     const [value, setValue] = useState('');
     const actionGeneration = useAction();
@@ -21,6 +22,10 @@ const InputGroup = ({ label, pattern, action, disabled }: any) => {
             actionGeneration(action, '');
         }
     }, [disabled]);
+
+    useEffect(() => {
+        actionGeneration(action.replace('CHANGE', 'VALID'), isValid);
+    }, [isValid]);
 
     return (
         <Row className={'my-1' + (disabled ? ' disabled' : '')}>

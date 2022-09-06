@@ -1,8 +1,9 @@
-import { INControl } from "./INsControl";
+import { INsControl } from "./INsControl";
 
 export interface INsGroup {
     name: string,
     defaultCheckbox: string,
     additionalCheckbox: string,
-    fields: INControl[],
+    fields: INsControl[],
+    closed?: boolean
 }

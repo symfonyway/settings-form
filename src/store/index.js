@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from './reducers';
+import { nsFormReducer } from './reducers';
 
 export const store = configureStore({
     reducer: {
-        test: rootReducer
+        nsFormReducer: nsFormReducer
     }
 });

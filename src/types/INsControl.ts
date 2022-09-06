@@ -1,4 +1,4 @@
-export interface INControl {
+export interface INsControl {
     label: string,
     pattern?: string,
     action: string

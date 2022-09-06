@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form } from 'react-bootstrap';
+import { INsGroup } from "../types/INsGroup";
 import { InputGroup } from "./FormControl";
 
-const FormGroup = ({name, defaultCheckbox, additionalCheckbox, fields, closed = false}: any) => {
+const FormGroup:React.FC<INsGroup> = ({name, defaultCheckbox, additionalCheckbox, fields, closed = false}) => {
     const [checkCondition, setCheckCondition] = useState(true);
 
     const changeRadioInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {

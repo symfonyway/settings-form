@@ -1,5 +1,5 @@
 // @ts-nocheck 
-import { NetworkSettings } from './components/nsPage';
+import { NetworkSettings } from './components/';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
