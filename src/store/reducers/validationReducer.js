@@ -7,7 +7,7 @@ import {
     VALID_WIRELESS_PREFERRED_DNS,
     VALID_SECURITY_KEY,
     VALID_NETWORK_NAME
-} from "../../constants/settingsActions"
+} from '../../constants/settingsActions'
 
 const store = {
     ethIpAddress: '',

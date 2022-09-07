@@ -6,7 +6,7 @@ import {
     CHANGE_WIRELESS_ALTERNATIVE_DNS,
     CHANGE_SECURITY_KEY,
     CHANGE_NETWORK_NAME
-} from "../../constants/settingsActions"
+} from '../../constants/settingsActions'
 
 const wirelessStore = {
     networkName: '',

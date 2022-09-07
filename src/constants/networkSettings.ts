@@ -1,5 +1,5 @@
-import { INsGroup } from "../types/INsGroup";
-import { IP_PATTERN } from "./patterns";
+import { INsGroup } from '../types/INsGroup';
+import { IP_PATTERN } from './patterns';
 import * as actions from './settingsActions';
 
 const ETHERNET_IP_FORM:INsGroup = {

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import { nsFormReducer } from './reducers';
 
 export const store = configureStore({

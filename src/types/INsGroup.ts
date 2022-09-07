@@ -1,4 +1,4 @@
-import { INsControl } from "./INsControl";
+import { INsControl } from './INsControl';
 
 export interface INsGroup {
     name: string,

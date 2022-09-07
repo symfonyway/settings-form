@@ -32,11 +32,11 @@ const InputGroup:React.FC<INsControl>  = ({ label, pattern, action, disabled }: 
             <Col>
                 <Form.Label className={pattern ? 'ns-form__required' : ''}>{label}</Form.Label>
             </Col>
-            <Col className='text-start'>
+            <Col className="text-start">
                 <Form.Control disabled={disabled} type="text" value={value} onChange={onChangeValue}/>
                 {
                     pattern && !isValid && 
-                    <Form.Text className='text-danger'>
+                    <Form.Text className="text-danger">
                         This field is invalid.
                     </Form.Text>
                 }

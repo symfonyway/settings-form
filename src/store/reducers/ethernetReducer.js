@@ -4,7 +4,7 @@ import {
     CHANGE_ETHERNET_DEFAULT_GATE_WAY,
     CHANGE_ETHERNET_PREFERRED_DNS,
     CHANGE_ETHERNET_ALTERNATIVE_DNS,
-} from "../../constants/settingsActions"
+} from '../../constants/settingsActions'
 
 const ethernetStore = {
     IpAddress: '',

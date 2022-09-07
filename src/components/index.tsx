@@ -98,12 +98,12 @@ const NetworkSettings = () => {
                         onChange={onWifiCheckBoxChange}
                     />
                     <Row className={wifiCheckBox ? '' : 'disabled'}>
-                        <Col className='ns-form__required text-end'><Form.Label>Wireless Network Name:</Form.Label></Col>
+                        <Col className="ns-form__required text-end"><Form.Label>Wireless Network Name:</Form.Label></Col>
                         <Col>
-                            <Form.Control disabled={!wifiCheckBox} type="text" value={networkName} onChange={onChangeNetworkName} placeholder='Please select'/>
+                            <Form.Control disabled={!wifiCheckBox} type="text" value={networkName} onChange={onChangeNetworkName} placeholder="Please select"/>
                             {
                               isWifiValid ||
-                              <Form.Text className='text-danger'>
+                              <Form.Text className="text-danger">
                                   This field is required.
                               </Form.Text>
                             }
@@ -122,7 +122,7 @@ const NetworkSettings = () => {
                             <Form.Control type="text" value={securityKey} onChange={onChangeSecurityKey} disabled={!(wifiCheckBox && securityCheckBox)}/>
                             {
                               isSecurityValid ||
-                              <Form.Text className='text-danger'>
+                              <Form.Text className="text-danger">
                                   This field is required.
                               </Form.Text>
                             }
@@ -134,7 +134,7 @@ const NetworkSettings = () => {
                 </Col>
                 </Row>
                 <Row xs="auto" className="border p-2">
-                    <Col className='px-1'><Button type='submit' variant="primary">Save</Button></Col>
+                    <Col className='px-1'><Button type="submit" variant="primary">Save</Button></Col>
                     <Col className='px-1'><Button variant="outline-primary">Cancel</Button></Col>
                 </Row>
             </Form>
