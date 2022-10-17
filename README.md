@@ -1,47 +1,34 @@
-# Getting Started with Create React App
+Read before usage
+========================
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This code is an implementation of the file system UI.
+Before adding code to your project, make sure you have:
 
-## Available Scripts
+* `jquery`
+* `bootstrap js`
+* `bootstrap css`
+* `bootstrap icons`
 
-In the project directory, you can run:
+In this example, they are injected via cdn:
+```bash
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+```
 
-### `npm start`
+This project includes three files, but only .js and .css files are worth paying attention to:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* `index.css needs for animations`
+* `index.js contains the main logic`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Usage
+========================
 
-### `npm test`
+Embed the index.js and index.css files (you can rename them, these names are just an example) on the page you want
+add foldersUI. Create an html block with id="folderWrapper", add data-href, data-files attributes:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* `the value of the data-files attribute is parsed into the folders and files list.
+(An example of how that object should looks like you can see in index.html)`
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# settings-form
+* `With data-href, the path is taken to download files that are in folders`
