@@ -1,2 +1,2 @@
-Settings page
+Settings form
 ========================
